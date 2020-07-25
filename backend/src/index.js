@@ -1,13 +1,15 @@
 const express = require("express");
+const cors = require('cors')
 const { uuid, isUuid } = require("uuidv4");
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 const projects = [];
 function logReq(req, res, next){ 
  const { method, url }= req
  const logLabel = `[${method.toUpperCase()}] ${url}`;
-  console.log(logLabel)
   return next()
 }
 
@@ -65,6 +67,6 @@ app.delete("/projects/:id", (req, res) => {
   return res.status(204).send();
 });
 
-app.listen(3000, () => {
+app.listen(3333, () => {
   console.log("😎 pai ta on");
 });
